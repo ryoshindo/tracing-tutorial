@@ -26,6 +26,8 @@ spec:
               value: "false"
             - name: GF_USERS_DEFAULT_THEME
               value: light
+            - name: GF_FEATURE_TOGGLES_ENABLE
+              value: traceToMetrics
             - name: LOKI_ENDPOINT
               valueFrom:
                 configMapKeyRef:
@@ -36,6 +38,11 @@ spec:
                 configMapKeyRef:
                   name: shared
                   key: prometheus_host
+            - name: TEMPO_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: shared
+                  key: tempo_endpoint
           ports:
             - containerPort: 3000
           volumeMounts:

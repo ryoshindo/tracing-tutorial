@@ -22,13 +22,20 @@ spec:
             - -euc
             - |
               mkdir -p /data/loki-data && \
-              mkdir -p /data/loki-ruler &&
+              mkdir -p /data/loki-ruler && \
+              mkdir -p /data/tempo
               minio server /data
           env:
             - name: MINIO_ACCESS_KEY
-              value: loki
+              valueFrom:
+                configMapKeyRef:
+                  name: shared
+                  key: minio_access_key
             - name: MINIO_SECRET_KEY
-              value: supersecret
+              valueFrom:
+                configMapKeyRef:
+                  name: shared
+                  key: minio_secret_key
             - name: MINIO_PROMETHEUS_AUTH_TYPE
               value: public
             - name: MINIO_UPDATE

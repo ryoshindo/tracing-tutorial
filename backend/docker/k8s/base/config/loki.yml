@@ -8,11 +8,11 @@ server:
 common:
   storage:
     s3:
-      endpoint: minio:9000
+      endpoint: $MINIO_ENDPOINT
       insecure: true
       bucketnames: loki-data
-      access_key_id: loki
-      secret_access_key: supersecret
+      access_key_id: $MINIO_ACCESS_KEY
+      secret_access_key: $MINIO_SECRET_KEY
       s3forcepathstyle: true
   compactor_address: http://localhost:3100
 
