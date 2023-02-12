@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-deployment
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:9.3.6
+          env:
+            - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+              value: Admin
+            - name: GF_AUTH_ANONYMOUS_ENABLED
+              value: "true"
+            - name: GF_AUTH_BASIC_ENABLED
+              value: "false"
+            - name: GF_USERS_DEFAULT_THEME
+              value: light
+            - name: LOKI_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: shared
+                  key: loki_endpoint
+            - name: PROMETHEUS_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: shared
+                  key: prometheus_endpoint
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: config
+              mountPath: /etc/grafana/provisioning/datasources
+      volumes:
+        - name: config
+          configMap:
+            name: config
+            items:
+              - key: grafana.yml
+                path: grafana.yml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  selector:
+    app: grafana
+  ports:
+    - name: http-grafana
+      protocol: TCP
+      appProtocol: http
+      port: 3000
+      targetPort: 3000

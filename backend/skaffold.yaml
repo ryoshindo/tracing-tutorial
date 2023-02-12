@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: tracing
+# build:
+#   artifacts:
+#     - image: api
+#       context: .
+#       docker:
+#         dockerfile: docker/api.Dockerfile
+#       sync:
+#         infer:
+#           - backend/**/*
+deploy:
+  kustomize:
+    paths:
+      - docker/k8s/overlays/local
