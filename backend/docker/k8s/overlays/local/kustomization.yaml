@@ -5,3 +5,5 @@ commonLabels:
 namespace: trace
 resources:
   - ../../base
+components:
+  - ../../components/local
