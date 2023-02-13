@@ -4,6 +4,14 @@ metadata:
   name: tracing
 build:
   artifacts:
+    - image: api
+      context: .
+      docker:
+        dockerfile: docker/api.Dockerfile
+      sync:
+        infer:
+          - go.mod
+          - api/**/*
     - image: k6
       context: .
       docker:
