@@ -2,15 +2,15 @@ apiVersion: skaffold/v2beta29
 kind: Config
 metadata:
   name: tracing
-# build:
-#   artifacts:
-#     - image: api
-#       context: .
-#       docker:
-#         dockerfile: docker/api.Dockerfile
-#       sync:
-#         infer:
-#           - backend/**/*
+build:
+  artifacts:
+    - image: k6
+      context: .
+      docker:
+        dockerfile: docker/k6.Dockerfile
+      sync:
+        infer:
+          - docker/k6/**/*
 deploy:
   kustomize:
     paths:
