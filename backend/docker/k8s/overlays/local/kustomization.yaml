@@ -7,3 +7,6 @@ resources:
   - ../../base
 components:
   - ../../components/local
+patchesStrategicMerge:
+  - api.yaml
+  - k6.yaml

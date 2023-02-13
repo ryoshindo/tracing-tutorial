@@ -8,6 +8,8 @@ resources:
   - loki.yaml
   - minio.yaml
   - tempo.yaml
+  - api.yaml
+  - k6.yaml
 configMapGenerator:
   - name: config
     files:

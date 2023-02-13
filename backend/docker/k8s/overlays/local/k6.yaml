@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k6-deployment
+  labels:
+    app: k6
+spec:
+  template:
+    metadata:
+      labels:
+        app: k6
+    spec:
+      containers:
+        - name: k6
+          image: k6
