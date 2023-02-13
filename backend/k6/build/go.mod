@@ -1,4 +1,4 @@
-module github.com/ryoshindo/tracing-tutorial/backend/docker/k6/build
+module github.com/ryoshindo/tracing-tutorial/backend/k6/build
 
 go 1.20
 
