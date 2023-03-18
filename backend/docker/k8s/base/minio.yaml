@@ -23,7 +23,7 @@ spec:
             - |
               mkdir -p /data/loki-data && \
               mkdir -p /data/loki-ruler && \
-              mkdir -p /data/tempo
+              mkdir -p /data/tempo-data && \
               minio server /data
           env:
             - name: MINIO_ACCESS_KEY

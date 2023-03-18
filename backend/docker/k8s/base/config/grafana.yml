@@ -8,12 +8,14 @@ datasources:
     url: $LOKI_ENDPOINT
     basicAuth: false
     version: 1
+    editable: true
   - name: prometheus
     type: prometheus
     uid: prometheus
     access: proxy
     url: $PROMETHEUS_ENDPOINT
     basicAuth: false
+    editable: true
     jsonData:
       tlsAuth: false
       tlsAuthWithCACert: false
@@ -25,7 +27,7 @@ datasources:
     url: $TEMPO_ENDPOINT
     basicAuth: false
     version: 1
-    editable: false
+    editable: true
     apiVersion: 1
     jsonData:
       httpMethod: GET

@@ -8,6 +8,6 @@ data:
   prometheus_host: http://prometheus:9090
   prometheus_endpoint: http://prometheus:9090/api/v1/write
   tempo_endpoint: http://tempo:3200
-  tempo_minio_endpoint: http://minio:9001
+  tempo_minio_endpoint: http://minio:9000
   minio_access_key: tracing-tutorial
   minio_secret_key: supersecret

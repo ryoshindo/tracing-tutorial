@@ -36,18 +36,24 @@ metrics_generator:
 
 storage:
   trace:
-    backend: s3 # backend configuration to use
+    # FIXME: We store data locally in the container because if istio-injection is set to true and s3 is used as the backend, access to minio:9000 becomes impossible.
+    # backend: s3 # backend configuration to use
+    # wal:
+    #   path: /tmp/tempo/wal # where to store the the wal locally
+    # s3:
+    #   endpoint: minio:9000 # TODO: env var
+    #   bucket: tempo-data # how to store data in s3
+    #   access_key: tracing-tutorial # TODO: env var
+    #   secret_key: supersecret # TODO: env var
+    #   insecure: true
+    #   # For using AWS, select the appropriate regional endpoint and region
+    #   # endpoint: s3.dualstack.us-west-2.amazonaws.com
+    #   # region: us-west-2
+    backend: local
+    local:
+      path: /var/tempo/traces
     wal:
-      path: /tmp/tempo/wal # where to store the the wal locally
-    s3:
-      bucket: tempo # how to store data in s3
-      endpoint: minio:9000 # TODO: env var
-      access_key: tracing-tutorial # TODO: env var
-      secret_key: supersecret # TODO: env var
-      insecure: true
-      # For using AWS, select the appropriate regional endpoint and region
-      # endpoint: s3.dualstack.us-west-2.amazonaws.com
-      # region: us-west-2
+      path: /var/tempo/wal
 
 overrides:
   metrics_generator_processors: [service-graphs, span-metrics]

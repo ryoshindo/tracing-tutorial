@@ -14,16 +14,17 @@ spec:
       labels:
         app: tempo
     spec:
-      initContainers:
-        - name: wait-minio
-          image: busybox
-          command:
-            - sh
-            - -c
-            - until nc -z minio 9000; do echo waiting for minio; sleep 2; done;
+      # FIXME: We store data locally in the container because if istio-injection is set to true and s3 is used as the backend, access to minio:9000 becomes impossible.
+      # initContainers:
+      #   - name: wait-minio
+      #     image: busybox
+      #     command:
+      #       - sh
+      #       - -c
+      #       - while [[ $(curl -sSf -w "%{http_code}" http://minio:9000/minio/health/live -o /dev/null) != 200 ]]; do sleep 5; done
       containers:
         - name: tempo
-          image: grafana/tempo:2.0.0
+          image: grafana/tempo:2.0.1
           command:
             - /tempo
             - -config.file=/etc/config/tempo.yml
