@@ -27,7 +27,7 @@ metrics_generator:
   registry:
     external_labels:
       source: tempo
-      cluster: trace # kubernetes namespace
+      cluster: tracing-tutorial # kubernetes namespace
   storage:
     path: /tmp/tempo/generator/wal
     remote_write:
@@ -42,7 +42,7 @@ storage:
     s3:
       bucket: tempo # how to store data in s3
       endpoint: minio:9000 # TODO: env var
-      access_key: trace # TODO: env var
+      access_key: tracing-tutorial # TODO: env var
       secret_key: supersecret # TODO: env var
       insecure: true
       # For using AWS, select the appropriate regional endpoint and region
