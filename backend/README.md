@@ -13,4 +13,6 @@ minikube start --cpus=4 --memory=8gb
 istioctl install -y --set profile=default
 skaffold dev
 minikube tunnel
+
+curl localhost:80/ready # ready
 ```
