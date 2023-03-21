@@ -16,3 +16,9 @@ minikube tunnel
 
 curl localhost:80/ready # ready
 ```
+
+## dashboard
+
+```shell
+istioctl dashboard -n tracing-tutorial grafana
+```
