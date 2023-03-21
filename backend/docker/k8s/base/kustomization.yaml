@@ -10,6 +10,7 @@ resources:
   - tempo.yaml
   - api.yaml
   - k6.yaml
+  - istio.yaml
 configMapGenerator:
   - name: config
     files:

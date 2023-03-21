@@ -28,7 +28,7 @@ spec:
   selector:
     app: k6
   ports:
-    - name: k6-http
+    - name: http-k6
       protocol: TCP
       appProtocol: http
       port: 6565
