@@ -9,7 +9,8 @@ brew install minikube skaffold kustomize istioctl
 ## start server
 
 ```shell
-minikube start
+minikube start --cpus=4 --memory=8gb
+istioctl install -y --set profile=default
 skaffold dev
-istioctl install --context minikube
+minikube tunnel
 ```
